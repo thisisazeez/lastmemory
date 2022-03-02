@@ -1,0 +1,154 @@
+{% extends 'hod_template/base_template.html' %}
+
+{% block page_title %}
+    Edit Student | Username: {{ student.username }} | #ID : {{ student.id }}
+{% endblock page_title %}
+
+{% block main_content %}
+
+{% load static %}
+
+<section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Edit Student</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="POST" action="{% url 'edit_student_save' %}">
+                        {% csrf_token %}
+
+                        
+                                {% comment %} Display Messages {% endcomment %}
+                                {% if messages %}
+                                <div class="form-group">
+                                <div class="col-12">
+                                    {% for message in messages %}
+                                    {% if message.tags == "error" %}
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                    {% elif message.tags == "success" %}
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+                                </div>
+                                {% endif %}
+                            
+
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Email address</label>
+                                <input type="email" class="form-control" name="email" value="{{ student.email }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input type="text" class="form-control" name="username" value="{{ student.username }}">
+                            </div>
+                            
+                                <div class="form-group">
+                                    <label>Student ID</label>
+                                    <input type="hidden" name="stu_id" value="{{ student.id }}" />
+                                    <input type="id" class="form-control" name="student_id" placeholder="LUC/student/0090" value="{{student.student_id}}">
+                                </div>
+    
+                                <div class="form-group">
+                                    <label>Nin ID</label>
+                                    <input type="id" class="form-control" name="nin" placeholder="2829292282873645454" value="{{student.nin}}">
+                                </div>
+    
+                                <div class="form-group">
+                                    <label>International Passport ID</label>
+                                    <input type="id" class="form-control" name="ip_id" placeholder="87650090" value="{{ student.ip_id }}">
+                                </div>
+    
+                                <div class="form-group">
+                                    <label>First Name</label>
+                                    <input type="text" class="form-control" name="first_name" placeholder="First Name" value="{{ student.first_name }}">
+                                </div>
+    
+                                <div class="form-group">
+                                    <label>Last Name</label>
+                                    <input type="text" class="form-control" name="last_name" placeholder="Last Name" value="{{ student.last_name }}">
+                                </div>
+    
+    
+                                <div class="form-group">
+                                    <label>Address</label>
+                                    <textarea class="form-control" name="address" placeholder="Address" value="{{ student.address }}"></textarea>
+                                </div>
+    
+    
+                                <div class="form-group">
+                                    <label>Total Fee</label>
+                                    <textarea class="form-control" name="total_fee" value="{{ student.totalFee }}"></textarea>
+                                </div>
+    
+    
+                                <div class="form-group">
+                                    <label>Intake:</label>
+                                    <select class="form-control" name="intake">
+                                        {% for intake in intakes %}
+                                            <option value="{{ intake.id }}">{{ intake.intake_name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+    
+                                <div class="form-group">
+                                    <label>Department:</label>
+                                    <select class="form-control" name="department">
+                                        {% for department in departments %}
+                                            <option value="{{department.id}}">{{ department.department_name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+    
+                                <div class="form-group">
+                                    <label>Status:</label>
+                                    <select class="form-control" name="status">
+                                        {% for status in status %}
+                                            <option value="{{status.id}}">{{ status.status_name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+    
+                                <div class="form-group">
+                                    <label>Programme:</label>
+                                    <select class="form-control" name="programme">
+                                        {% for programme in programme %}
+                                            <option value="{{programme.id}}">{{ programme.programme_name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Update Student</button>
+                        </div>
+                    </form>
+                    </div>
+                    <!-- /.card -->
+
+                </div>
+            </div>
+
+        </div><!-- /.container-fluid -->
+      </section>
+
+  {% endblock main_content %}

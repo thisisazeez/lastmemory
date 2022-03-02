@@ -1,0 +1,140 @@
+{% extends 'hod_template/base_template.html' %}
+
+{% block page_title %}
+    Add User
+{% endblock page_title %}
+
+{% block main_content %}
+
+{% load static %}
+
+<section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                        <h3>Add User</h3>
+                        <hr>
+                        <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="POST" >
+                        {% csrf_token %}
+
+                        
+                                {% comment %} Display Messages {% endcomment %}
+                                {% if msg %}
+                                <div class="form-group">
+                                <div class="col-12">
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                        {{ msg }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                </div>
+                                </div>
+                                {% endif %}
+                            
+
+                                <form  method="post">
+                                    {% csrf_token %}
+                                  <div class="form-group first">
+                                    <label for="username">Username</label>
+                                      {{ form.username }}
+                                  </div>
+                                  <div class="form-group first">
+                                    <label for="email">Email</label>
+                                      {{ form.email}}
+                                  </div>
+                                  <div class="form-group last mb-4">
+                                    <label for="password">Password</label>
+                                      {{ form.password1 }}
+                                  </div>
+                                  <div class="form-group last mb-4">
+                                    <label for="password">confirm Password</label>
+                                      {{ form.password2 }}
+                                  </div>
+                                  <div class="form-group last mb-4">
+                                    <label for="password">Nin</label>
+                                      {{ form.nin }}
+                                  </div>
+                                  <div class="form-group last mb-4">
+                                    <label for="password">Phone Number </label>
+                                      {{ form.phone_num }}
+                                  </div>
+                                  <div class="d-flex mb-5 align-items-center">
+                                    <label class="control control--checkbox mb-0"><span class="caption">Admin</span>
+                                        {{ form.is_admin }}
+                                      <div class="control__indicator"></div>
+                                    </label>
+                                  </div>
+                                  <div class="d-flex mb-5 align-items-center">
+                                    <label class="control control--checkbox mb-0"><span class="caption">Student Registrar</span>
+                                        {{ form.is_registrar1 }}
+                                      <div class="control__indicator"></div>
+                                    </label>
+                                  </div>
+                                  <div class="d-flex mb-5 align-items-center">
+                                    <label class="control control--checkbox mb-0"><span class="caption">Staff Registrar</span>
+                                        {{ form.is_registrar2 }}
+                                      <div class="control__indicator"></div>
+                                    </label>
+                                  </div>
+                                  <div class="d-flex mb-5 align-items-center">
+                                    <label class="control control--checkbox mb-0"><span class="caption">Cashier</span>
+                                        {{ form.is_cashier }}
+                                      <div class="control__indicator"></div>
+                                    </label>
+                                  </div>
+                                  <div class="d-flex mb-5 align-items-center">
+                                    <label class="control control--checkbox mb-0"><span class="caption">Expenses</span>
+                                        {{ form.is_expenses }}
+                                      <div class="control__indicator"></div>
+                                    </label>
+                                  </div>
+                                  <div class="d-flex mb-5 align-items-center">
+                                    <label class="control control--checkbox mb-0"><span class="caption">Daily Report</span>
+                                        {{ form.is_daily_report }}
+                                      <div class="control__indicator"></div>
+                                    </label>
+                                  </div>
+                                  <div class="d-flex mb-5 align-items-center">
+                                    <label class="control control--checkbox mb-0"><span class="caption">Weekly Report</span>
+                                        {{ form.is_weekly_report }}
+                                      <div class="control__indicator"></div>
+                                    </label>
+                                  </div>
+                                  <div class="d-flex mb-5 align-items-center">
+                                    <label class="control control--checkbox mb-0"><span class="caption">Monthly Report</span>
+                                        {{ form.is_monthly_report }}
+                                      <div class="control__indicator"></div>
+                                    </label>
+                                  </div>
+                                  <div class="d-flex mb-5 align-items-center">
+                                    <label class="control control--checkbox mb-0"><span class="caption">Expenses Report</span>
+                                        {{ form.is_expenses_report }}
+                                      <div class="control__indicator"></div>
+                                    </label>
+                                  </div>
+                                  <div class="d-flex mb-5 align-items-center">
+                                    <label class="control control--checkbox mb-0"><span class="caption">Adder</span>
+                                        {{ form.is_add }}
+                                      <div class="control__indicator"></div>
+                                    </label>
+                                  </div>
+                        </div>
+                        <!-- /.card-body -->
+                        <button type="submit" class="btn btn-primary">Add User</button>
+                        <br>
+                    </form>
+                    </div>
+                    <!-- /.card -->
+
+                </div>
+            </div>
+
+        </div><!-- /.container-fluid -->
+      </section>
+
+  {% endblock main_content %}
